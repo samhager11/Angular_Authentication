@@ -16,7 +16,10 @@ var path 	   = require('path');
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
+//solves CORS errors by setting headers automatically upon every request
 // configure our app to handle CORS requests
+//appending a different key-value pair to the header three times 
+//setHeader method is available to the response object
 app.use(function(req, res, next) {
 	res.setHeader('Access-Control-Allow-Origin', '*');
 	res.setHeader('Access-Control-Allow-Methods', 'GET, POST');
@@ -44,6 +47,7 @@ app.use('/api', apiRoutes);
 // MAIN CATCHALL ROUTE ---------------
 // SEND USERS TO FRONTEND ------------
 // has to be registered after API ROUTES
+//start off here no matter what
 app.get('*', function(req, res) {
 	res.sendFile(path.join(__dirname + '/public/app/views/index.html'));
 });
