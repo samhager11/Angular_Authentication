@@ -1,5 +1,8 @@
+
+//injecting ngRoute into app
 angular.module('app.routes', ['ngRoute'])
 
+//injecting routeProvider and locationProvider to handle routes
 .config(function($routeProvider, $locationProvider) {
 
 	$routeProvider
@@ -10,10 +13,11 @@ angular.module('app.routes', ['ngRoute'])
 		})
 
 		// login page
+		//controller to use for this template
 		.when('/login', {
 			templateUrl : 'app/views/pages/login.html',
    			controller  : 'mainController',
-    			controllerAs: 'login'
+    		controllerAs: 'login'
 		})
 
 		// show all users

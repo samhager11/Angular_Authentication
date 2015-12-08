@@ -32,7 +32,7 @@ module.exports = function(app, express) {
 				user.password = 'test';
 				user.save();
 			}
-
+			res.send('done')
 		});
 
 	});
@@ -43,6 +43,7 @@ module.exports = function(app, express) {
 	  // find the user
 	  User.findOne({
 	    username: req.body.username
+		//fields to be accepted back from the document (query specificity)
 	  }).select('name username password').exec(function(err, user) {
 
 	    if (err) throw err;
@@ -66,6 +67,8 @@ module.exports = function(app, express) {
 
 	        // if user is found and password is right
 	        // create a token
+			//three parts to a web token: headers, content(where we put what we want to save on the token), 
+			//and a secret(hash/server password to decode token)
 	        var token = jwt.sign({
 	        	name: user.name,
 	        	username: user.username
@@ -82,7 +85,7 @@ module.exports = function(app, express) {
 	      }
 
 	    }
-
+		// res.send('done')
 	  });
 	});
 
@@ -121,7 +124,7 @@ module.exports = function(app, express) {
    	 		success: false,
    	 		message: 'No token provided.'
    	 	});
-
+		// res.send('done')
 	  }
 	});
 
